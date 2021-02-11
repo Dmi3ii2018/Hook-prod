@@ -22,6 +22,7 @@ export const ContainerCustom = styled.div`
   overflow: ${({ overflow }) => overflow};
   z-index: ${({ zIndex }) => zIndex};
   transform: scale(${({ scale }) => scale});
+  border-radius: ${({ borderRadius }) => borderRadius};
 
   ${({ borderColor, borderRadius }) =>
     borderColor &&

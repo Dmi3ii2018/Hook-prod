@@ -6,16 +6,16 @@
 }
 
 @font-face {
-  font-family: "Noto Sans";
+  font-family: "NotoSans";
   src: url("./assets/fonts/NotoSans-Bold.ttf") format("ttf");
   font-weight: 700;
   font-style: normal;
 }
 
 @font-face {
-  font-family: "Noto Sans";
-  src: url("./assets/fonts/NotoSans-Medium.ttf") format("ttf");
-  font-weight: 500;
+  font-family: "NotoSans";
+  src: url("./assets/fonts/NotoSans.woff") format("woff");
+  font-weight: 600;
   font-style: normal;
 }
 
@@ -47,3 +47,7 @@
   font-style: normal;
 }
 
+body {
+  background-color: #E5E5E5;
+  font-family: "Open Sans", Arial, sans-serif;
+}

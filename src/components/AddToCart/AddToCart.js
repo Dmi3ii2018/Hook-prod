@@ -1,20 +1,28 @@
 import React from "react";
-import { AddButton, DeleteButton, Span, ContainerCustom } from "components";
-import { ReactComponent as PlusSign } from "assets/icons/plus-sign.svg";
+import { ButtonAdd, DeleteButton, Span, ContainerCustom } from "components";
 import PropTypes from "prop-types";
 
 const AddToCart = ({ size }) => {
   return (
-    <ContainerCustom display="flex">
-      <DeleteButton />
-      <Span>{0}</Span>
-      {React.createElement(AddButton, size, <PlusSign />)}
+    <ContainerCustom display="flex" align="center">
+      <DeleteButton size={size} />
+      <Span
+        color="#333333"
+        margin="0 12px"
+        weight="600"
+        size="16px"
+        lineHeight="22px"
+        family="NotoSans, Arial"
+      >
+        {0}
+      </Span>
+      <ButtonAdd size={size} />
     </ContainerCustom>
   );
 };
 
 AddToCart.propTypes = {
-  size: PropTypes.oneOf(["Big", "Small"]),
+  size: PropTypes.oneOf(["big", "small"]),
 };
 
 export { AddToCart };

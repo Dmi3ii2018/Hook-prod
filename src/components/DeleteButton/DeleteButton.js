@@ -8,7 +8,7 @@ const DeleteButton = ({ size }) => {
 }
 
 DeleteButton.propTypes = {
-    size: PropTypes.oneOf(['Big', 'Small']),
+    size: PropTypes.oneOf(['big', 'small']),
 }
 
 export { DeleteButton }

@@ -7,6 +7,7 @@ const Carousel = () => {
   const settings = useMemo(
     () => ({
       dots: true,
+      arrows: false,
       infinite: true,
       speed: 500,
       slidesToShow: 1,

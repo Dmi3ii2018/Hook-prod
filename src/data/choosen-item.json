@@ -1,8 +1,41 @@
 {
+  "id": "1",
+  "features": [
+    {
+      "id": "1",
+      "icon": "/icon-one.svg",
+      "title": "feature one"
+    },
+    {
+      "id": "2",
+      "icon": "/icon-two.svg",
+      "title": "feature two"
+    },
+    {
+      "id": "3",
+      "icon": "/icon-three.svg",
+      "title": "feature three"
+    },
+    {
+      "id": "4",
+      "icon": "/icon-one.svg",
+      "title": "feature one"
+    },
+    {
+      "id": "5",
+      "icon": "/icon-two.svg",
+      "title": "feature two"
+    },
+    {
+      "id": "6",
+      "icon": "/icon-three.svg",
+      "title": "feature three"
+    }
+  ],
+  "isFavorite": false,
   "description": {
     "name": "Just Milk Semi-Skimmed 6 x 1L (Case of 2)",
     "price": "1.59",
-    "isFavorite": false,
     "img": "/main-item.png"
   },
   "related products": [

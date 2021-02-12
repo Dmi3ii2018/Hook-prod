@@ -52,6 +52,7 @@ export const Text = styled.p`
 
 export const Span = styled.span`
   width: ${({ width }) => width};
+  height: ${({ height }) => height};
   color: ${({ theme, color }) => color || theme.colors.primary};
   margin: ${({ margin }) => margin};
   padding: ${({ padding }) => padding};

@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useMemo } from "react";
 import { connect } from "react-redux";
 import { ActionCreator } from "actions";
 import {
@@ -6,18 +6,27 @@ import {
   ContainerCustom,
   DeliveryForm,
   Payments,
+  Total
 } from "components";
 import CartItems from "./parts/CartItems";
 
 const Cart = (props) => {
   console.log("props: ", props);
   const { cartItems } = props;
+
+const totalPrice = useMemo(() => {
+    const total = cartItems.reduce((sum, current) => sum + current.description.price, 0)
+    console.log(total)
+    return total.toFixed(2);
+}, [cartItems])
+
   return (
     <ContainerCustom>
       <Navigation />
       <DeliveryForm />
       <CartItems cartItems={cartItems} />
       <Payments />
+      <Total order={totalPrice} />
     </ContainerCustom>
   );
 };

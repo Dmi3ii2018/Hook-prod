@@ -1,22 +1,14 @@
-import React, { useState } from "react";
+import React from "react";
 import { ButtonAdd, DeleteButton, Span, ContainerCustom } from "components";
 import PropTypes from "prop-types";
 
-const AddToCart = ({ size }) => {
-  const [inCartAmount, setInCart] = useState(0);
+const AddToCart = ({ size, inCartAmount }) => {
 
-  const onAddButtonClick = () => {
-    setInCart((prevState) => prevState + 1);
-  }
-
-  const onDeleteButtonClick = () => {
-    setInCart(0);
-  }
   return (
     <ContainerCustom display="flex" align="center">
       {inCartAmount ? (
         <>
-          <DeleteButton clickHandler={onDeleteButtonClick} size={size} />
+          <DeleteButton size={size} />
           <Span
             color="#333333"
             margin="0 12px"
@@ -31,13 +23,14 @@ const AddToCart = ({ size }) => {
       ) : (
         <Span margin="0 6px 0 0">Add</Span>
       )}
-      <ButtonAdd clickHandler={onAddButtonClick} size={size} />
+      <ButtonAdd size={size} />
     </ContainerCustom>
   );
 };
 
 AddToCart.propTypes = {
   size: PropTypes.oneOf(["big", "small"]),
+  inCartAmount: PropTypes.number
 };
 
 export { AddToCart };

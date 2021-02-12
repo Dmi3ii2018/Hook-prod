@@ -1,8 +1,13 @@
 import React from "react";
 import { connect } from "react-redux";
 import { ActionCreator } from "actions";
-import { Navigation, ContainerCustom, DeliveryForm } from "components";
-import CartItems  from "./parts/CartItems"
+import {
+  Navigation,
+  ContainerCustom,
+  DeliveryForm,
+  Payments,
+} from "components";
+import CartItems from "./parts/CartItems";
 
 const Cart = (props) => {
   console.log("props: ", props);
@@ -12,6 +17,7 @@ const Cart = (props) => {
       <Navigation />
       <DeliveryForm />
       <CartItems cartItems={cartItems} />
+      <Payments />
     </ContainerCustom>
   );
 };

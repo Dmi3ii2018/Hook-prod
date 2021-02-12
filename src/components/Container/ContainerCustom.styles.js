@@ -16,6 +16,7 @@ export const ContainerCustom = styled.div`
   flex-direction: ${({ direction }) => direction};
   align-items: ${({ align }) => align};
   flex-wrap: ${({ wrap }) => wrap};
+  flex-grow: ${({ grow }) => grow};
   margin: ${({ margin }) => margin};
   align-self: ${({ alignSelf }) => alignSelf};
   position: ${({ position }) => position};

@@ -17,3 +17,4 @@ export { Composition } from "./Composition/Composition";
 export { Input, Form, Label } from "./Input/Input.style";
 export { DeliveryForm } from "./Form/Form";
 export { CartItem } from "./CartItem/CartItem";
+export { Payments } from "./Payments/Payments";

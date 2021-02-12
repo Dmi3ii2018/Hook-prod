@@ -4,17 +4,24 @@ import "./index.css";
 import App from "./App";
 import reportWebVitals from "./reportWebVitals";
 import { Theme } from "./theme";
+import { createStore } from "redux";
+import { rootReducer } from "./reducer/reducer";
+import { Provider } from "react-redux";
 
-if (process.env.NODE_ENV !== 'production') {
-  const {whyDidYouUpdate} = require('why-did-you-update');
+if (process.env.NODE_ENV !== "production") {
+  const { whyDidYouUpdate } = require("why-did-you-update");
   whyDidYouUpdate(React);
 }
 
+const store = new createStore(rootReducer);
+console.log("store: ", store.getState());
 ReactDOM.render(
   <React.StrictMode>
-    <Theme>
-      <App />
-    </Theme>
+    <Provider store={store}>
+      <Theme>
+        <App />
+      </Theme>
+    </Provider>
   </React.StrictMode>,
   document.getElementById("root")
 );

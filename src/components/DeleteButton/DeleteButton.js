@@ -3,8 +3,8 @@ import { ReactComponent as BinIcon } from "assets/icons/bin.svg";
 import { RoundIcon } from "components";
 import PropTypes from 'prop-types';
 
-const DeleteButton = ({ size }) => {
-    return <RoundIcon size={size} icon={<BinIcon />} />
+const DeleteButton = ({ size, clickHandler }) => {
+    return <RoundIcon cb={clickHandler} size={size} icon={<BinIcon />} />
 }
 
 DeleteButton.propTypes = {

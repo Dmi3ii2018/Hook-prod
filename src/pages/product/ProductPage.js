@@ -1,13 +1,24 @@
-import React from 'react'
-import { Navigation, ContainerCustom, ProductCard } from "components"
+import React from "react";
+import {
+  Navigation,
+  ContainerCustom,
+  ProductCard,
+  RelatedProducts,
+  Composition,
+} from "components";
+import productData from "../../data/choosen-item.json";
 
 const ProductPage = () => {
-    return (
-        <ContainerCustom>
-            <Navigation />
-            <ProductCard />
-        </ContainerCustom>
-    )
-}
+    const { relatedProducts, composition } = productData;
 
-export default ProductPage
+  return (
+    <ContainerCustom>
+      <Navigation />
+      <ProductCard />
+      <RelatedProducts relatedProducts={relatedProducts} />
+      <Composition composition={composition} />
+    </ContainerCustom>
+  );
+};
+
+export default ProductPage;

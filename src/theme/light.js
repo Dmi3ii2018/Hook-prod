@@ -17,7 +17,7 @@ const theme = {
     },
     borders: {
       main: '#D1DDE5',
-      light: '#e5ebef',
+      light: '#FFB000',
       error: '#ff0052',
     },
   },

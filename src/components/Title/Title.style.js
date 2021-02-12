@@ -43,7 +43,7 @@ export const Text = styled.p`
       color: ${({ theme }) => theme.colors.primary};
     `}
 
-    ${({ secondary }) =>
+  ${({ secondary }) =>
     secondary &&
     css`
       color: ${({ theme }) => theme.colors.text.secondary};
@@ -51,8 +51,10 @@ export const Text = styled.p`
 `;
 
 export const Span = styled.span`
+  width: ${({ width }) => width};
   color: ${({ theme, color }) => color || theme.colors.primary};
   margin: ${({ margin }) => margin};
+  padding: ${({ padding }) => padding};
   display: ${({ display }) => display};
   justify-content: ${({ justify }) => justify};
   flex-direction: ${({ direction }) => direction};
@@ -61,8 +63,10 @@ export const Span = styled.span`
   position: ${({ position }) => position};
   right: ${({ right }) => right};
   top: ${({ top }) => top};
+  text-align: ${({textAlign}) => textAlign};
+  background-color: ${({ bg }) => bg};
   cursor: ${({ cursor }) => cursor};
   line-height: ${({ lineHeight }) => lineHeight};
   font-weight: ${({ weight }) => weight};
   font-family: ${({ family }) => family || "Mukta, Arial, serif"};
-`
+`;

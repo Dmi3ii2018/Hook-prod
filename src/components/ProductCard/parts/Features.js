@@ -1,5 +1,5 @@
 import React, { useMemo } from "react";
-import { ContainerCustom, Span } from "components";
+import { ContainerCustom, Span, Img } from "components";
 import PropTypes from "prop-types";
 
 const MAX_FEATURES_ICON_NUMBER = 3;
@@ -19,9 +19,10 @@ const Features = ({ features, isFavorite }) => {
       align="center"
       margin="0 0 14px 0"
     >
-      {featuresList.map(({ id, icon, title }) => {
+      {featuresList.map(({ id, icon, title }, i) => {
         return (
-          <img
+          <Img
+            margin={i === 0 ? "0 0 0 22px" : "0 0 0 6px"}
             key={id}
             src={require(`assets/icons${icon}`).default}
             alt={title}
@@ -35,6 +36,7 @@ const Features = ({ features, isFavorite }) => {
           weight="600"
           size="10px"
           lineHeight="14px"
+          margin="0 0 0 6px"
         >
           {`+${features.length - MAX_FEATURES_ICON_NUMBER}`}
         </Span>
@@ -47,13 +49,13 @@ const Features = ({ features, isFavorite }) => {
         align="center"
         cursor="pointer"
       >
-        <img
+        <Img
           src={
             require(`assets/icons${
               isFavorite ? "/fav-selected.svg" : "/not-fav.svg"
             }`).default
           }
-          alt="is product favorite"
+          alt={isFavorite ? "Product is Favorite" : "Add to favorite"}
         />
       </Span>
     </ContainerCustom>

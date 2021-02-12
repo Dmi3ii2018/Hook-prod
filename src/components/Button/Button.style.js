@@ -18,35 +18,14 @@ export const Button = styled.button`
   border: none;
   box-shadow: ${({ shadow }) => shadow};
   font-size: ${({ size }) => size};
+  position: ${({ position }) => position};
+  right: ${({ right }) => right};
+  top: ${({ top }) => top};
+  bottom: ${({ bottom }) => bottom};
   cursor: pointer;
 
   &:focus {
     border: none;
     outline: none;
   }
-
-  &:hover {
-    background: ${({ backgroundHover }) => backgroundHover || "#772584"};
-    color: ${({ theme }) => theme.colors.text.muted};
-    color: ${({ colorHover }) => colorHover};
-    cursor: pointer;
-  }
-
-  ${({ theme, primary }) => primary
-    && css`
-      color: #fff;
-      background-color: ${theme.colors.primary};
-      &:hover {
-        color: #fff;
-      }
-    `}
-
-    ${({ theme, secondary }) => secondary
-    && css`
-      color: #fff;
-      background-color: ${theme.colors.secondary};
-      &:hover {
-        color: #fff;
-      }
-    `}
 `;

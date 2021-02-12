@@ -9,10 +9,11 @@ const Composition = () => {
       primary
       display="flex"
       justify="space-between"
+      margin="16px 0"
     >
-      <ListItem>Nutrition</ListItem>
-      <ListItem>Ingredients</ListItem>
-      <ListItem>Other</ListItem>
+      <ListItem><a href="#Nutrition">Nutrition</a></ListItem>
+      <ListItem><a href="#Ingredients">Ingredients</a></ListItem>
+      <ListItem><a href="#Other">Other</a></ListItem>
     </List>
   );
 };

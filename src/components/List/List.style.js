@@ -2,7 +2,7 @@ import styled, { css } from 'styled-components';
 
 export const List = styled.ul`
   width: ${({ width }) => width};
-  margin: 0;
+  margin: ${({ margin }) => margin || '0'};
   display: ${({ display }) => display};
   align-items: ${({ align }) => align};
   justify-content: ${({ justify }) => justify};
@@ -12,11 +12,15 @@ export const List = styled.ul`
   font-size: ${({ size }) => size};
   font-weight: ${({ weight }) => weight};
   font-family: ${({ family }) => family || "Noto Sans, Arial, serif"};
-
+  list-style-type: ${({ type }) => type};
   ${({ primary }) =>
     primary &&
     css`
       color: ${({ theme }) => theme.colors.primary};
+
+      a {
+        color: ${({ theme }) => theme.colors.primary};
+      }
     `}
 `;
 

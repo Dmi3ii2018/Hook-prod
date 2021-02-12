@@ -1,10 +1,13 @@
-import styled, { css } from 'styled-components';
+import styled, { css } from "styled-components";
 
 export const ContainerCustom = styled.div`
+  border: ${({ border }) => border};
   width: ${({ width }) => width};
   max-width: ${({ maxWidth }) => maxWidth};
+  min-width: ${({ minWidth }) => minWidth};
   background: ${({ bg }) => bg};
   height: ${({ height }) => height};
+  min-height: ${({ minHeight }) => minHeight};
   overflow-y: ${({ overflowY }) => overflowY};
   overflow-x: ${({ overflowX }) => overflowX};
   padding: ${({ padding }) => padding};
@@ -21,9 +24,8 @@ export const ContainerCustom = styled.div`
   bottom: ${({ bottom }) => bottom};
   overflow: ${({ overflow }) => overflow};
   z-index: ${({ zIndex }) => zIndex};
-  transform: scale(${({ scale }) => scale});
   border-radius: ${({ borderRadius }) => borderRadius};
-
+  box-sizing: border-box;
   ${({ borderColor, borderRadius }) =>
     borderColor &&
     css`
@@ -62,5 +64,4 @@ export const ContainerCustom = styled.div`
     cursor: grab;
     background: #999;
   }
-
 `;

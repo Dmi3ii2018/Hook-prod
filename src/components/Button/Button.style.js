@@ -14,7 +14,7 @@ export const Button = styled.button`
   line-height: ${({ lineHeight }) => lineHeight};
   text-align: center;
   font-weight: ${({ weight }) => weight};
-  border-radius: 10px;
+  border-radius: 8px;
   border: none;
   box-shadow: ${({ shadow }) => shadow};
   font-size: ${({ size }) => size};

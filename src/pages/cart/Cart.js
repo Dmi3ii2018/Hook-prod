@@ -6,7 +6,8 @@ import {
   ContainerCustom,
   DeliveryForm,
   Payments,
-  Total
+  Total,
+  Checkout
 } from "components";
 import CartItems from "./parts/CartItems";
 
@@ -27,6 +28,7 @@ const totalPrice = useMemo(() => {
       <CartItems cartItems={cartItems} />
       <Payments />
       <Total order={totalPrice} />
+      <Checkout />
     </ContainerCustom>
   );
 };

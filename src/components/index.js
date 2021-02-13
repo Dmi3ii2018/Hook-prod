@@ -19,3 +19,5 @@ export { DeliveryForm } from "./Form/Form";
 export { CartItem } from "./CartItem/CartItem";
 export { Payments } from "./Payments/Payments";
 export { Total } from "./Total/Total";
+export { Thunder } from "./Thunder/Thunder.style";
+export { Checkout } from "./Checkout/Checkout"

@@ -7,7 +7,7 @@ import {
   DeliveryForm,
   Payments,
   Total,
-  Checkout
+  Checkout,
 } from "components";
 import CartItems from "./parts/CartItems";
 
@@ -15,15 +15,18 @@ const Cart = (props) => {
   console.log("props: ", props);
   const { cartItems } = props;
 
-const totalPrice = useMemo(() => {
-    const total = cartItems.reduce((sum, current) => sum + current.description.price, 0)
-    console.log(total)
+  const totalPrice = useMemo(() => {
+    const total = cartItems.reduce(
+      (sum, current) => sum + current.description.price,
+      0
+    );
+    console.log(total);
     return total.toFixed(2);
-}, [cartItems])
+  }, [cartItems]);
 
   return (
     <ContainerCustom>
-      <Navigation />
+      <Navigation title="Navigation" />
       <DeliveryForm />
       <CartItems cartItems={cartItems} />
       <Payments />
@@ -34,8 +37,9 @@ const totalPrice = useMemo(() => {
 };
 
 const mapStateToProps = (state) => {
+  const cartItems = state.cartItems.filter((item) => item.description.inCartAmmount > 0);
   return {
-    cartItems: [...state.cartItems],
+    cartItems,
   };
 };
 

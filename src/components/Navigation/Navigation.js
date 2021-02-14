@@ -1,24 +1,28 @@
 import React, { useEffect, useRef, useState } from "react";
-import { ContainerCustom, Title } from "components";
+import { ContainerCustom, Title, Span } from "components";
 import { NavigationContainer } from "./Navigation.style";
+import PropTypes from "prop-types";
+import { withRouter } from "react-router";
+import { ReactComponent as BackArrowIcon } from "assets/icons/back-arrow.svg";
 
-const Navigation = () => {
+const SCROLL_ANIMATION_TARGET = 35;
+
+const NavigationComponent = ({ title, history, location }) => {
   const ticking = useRef(false);
-  const isFirstrender = useRef(true);
   const [isNavBarHidden, setNavBarHidden] = useState(false);
+  const [isFirstrender, setFirstrender] = useState(true);
 
   useEffect(() => {
     const handleScroll = () => {
-
       let lastKnownScrollPosition = window.scrollY;
 
       if (!ticking.current) {
         window.requestAnimationFrame(function () {
-          if (lastKnownScrollPosition > 40 && isNavBarHidden === false) {
+          if (lastKnownScrollPosition > SCROLL_ANIMATION_TARGET) {
             setNavBarHidden(true);
-            isFirstrender.current = false;
+            setFirstrender(false);
           }
-          if (lastKnownScrollPosition < 40 && isNavBarHidden === true) {
+          if (lastKnownScrollPosition < SCROLL_ANIMATION_TARGET) {
             setNavBarHidden(false);
           }
           ticking.current = false;
@@ -31,13 +35,20 @@ const Navigation = () => {
     return () => {
       document.removeEventListener("scroll", handleScroll);
     };
-  }, [isNavBarHidden]);
+  }, []);
+
+  const backClickHandler = () => {
+      if(location.pathname === "/") {
+        return
+      }
+      history.goBack()
+  }
 
   return (
     <NavigationContainer position="relative">
       <ContainerCustom
         width="100%"
-        height="79px"
+        height="50px"
         bg="#FFB000"
         textAlign="center"
         position="fixed"
@@ -45,23 +56,30 @@ const Navigation = () => {
         top="0"
         zIndex="10"
       >
+        <Span position="absolute" left="17px" top="10px">
+          <BackArrowIcon onClick={backClickHandler} />
+        </Span>
         <Title size="24px" lineHeight="42px" weight="700" color="#333333">
-          Navigation
+          {title}
         </Title>
       </ContainerCustom>
-      <ContainerCustom margin="79px 0 0 0" />
+      <ContainerCustom margin="50px 0 0 0" />
       <ContainerCustom
         width="100%"
-        height="43px"
+        height="50px"
         bg="#FFB000"
         borderRadius="0 0 8px 8px"
-        top="70px"
+        top="45px"
         position="fixed"
         zIndex="-1"
-        className={!isFirstrender ? "" : isNavBarHidden ? "close" : "open" }
+        className={isFirstrender ? "" : isNavBarHidden ? "close" : "open"}
       />
     </NavigationContainer>
   );
 };
 
-export { Navigation };
+NavigationComponent.propTypes = {
+  title: PropTypes.string,
+};
+
+export const Navigation = withRouter(NavigationComponent);

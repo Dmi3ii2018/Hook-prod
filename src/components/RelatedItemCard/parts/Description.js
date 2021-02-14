@@ -2,9 +2,11 @@ import React from "react";
 import { ContainerCustom, Text, Span, AddToCart } from "components";
 import PropTypes from "prop-types";
 
-const Description = ({ name, price }) => {
+const Description = ({ description, id }) => {
+  const { name, price, inCartAmmount } = description;
+
   return (
-    <ContainerCustom position="absolute" bottom="18px" margin="0">
+    <ContainerCustom padding="0 18px 0 0" position="absolute" bottom="18px" margin="0">
       <Text
         color="#333333"
         width="80%"
@@ -33,7 +35,7 @@ const Description = ({ name, price }) => {
           size="16px"
           lineHeight="20px"
         >{`£${price}`}</Span>
-        <AddToCart size="small" />
+        <AddToCart inCartAmount={inCartAmmount} id={id}  size="small" />
       </ContainerCustom>
     </ContainerCustom>
   );
@@ -43,7 +45,9 @@ Description.propTypes = {
   description: PropTypes.shape({
     name: PropTypes.string,
     price: PropTypes.number,
+    inCartAmmount: PropTypes.number,
   }),
+  id: PropTypes.number
 };
 
 export default Description;

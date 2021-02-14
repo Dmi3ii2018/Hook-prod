@@ -22,6 +22,7 @@ export const ContainerCustom = styled.div`
   position: ${({ position }) => position};
   right: ${({ right }) => right};
   top: ${({ top }) => top};
+  filter: ${({ filter }) => filter};
   bottom: ${({ bottom }) => bottom};
   overflow: ${({ overflow }) => overflow};
   z-index: ${({ zIndex }) => zIndex};

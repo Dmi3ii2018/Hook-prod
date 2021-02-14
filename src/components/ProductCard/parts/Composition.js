@@ -9,7 +9,8 @@ const Composition = () => {
       primary
       display="flex"
       justify="space-between"
-      margin="16px 0"
+      margin="16px 0 0 0"
+      color="#FFB000"
     >
       <ListItem><a href="#Nutrition">Nutrition</a></ListItem>
       <ListItem><a href="#Ingredients">Ingredients</a></ListItem>

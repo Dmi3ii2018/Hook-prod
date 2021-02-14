@@ -8,7 +8,4 @@ export const Icon = styled.span`
   background-size: contain;
 
   cursor: ${({ pointer }) => `${pointer}`};
-  &:hover {
-    background-image: url(${({ hover }) => hover});
-  }
 `;

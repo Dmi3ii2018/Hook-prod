@@ -64,6 +64,7 @@ export const Span = styled.span`
   position: ${({ position }) => position};
   right: ${({ right }) => right};
   top: ${({ top }) => top};
+  left: ${({ left }) => left};
   border-radius: ${({ borderRadius }) => borderRadius};
   text-align: ${({textAlign}) => textAlign};
   text-decoration: ${({textDecoration}) => textDecoration};

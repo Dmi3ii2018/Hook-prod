@@ -78,7 +78,7 @@ const Calories = ({ calories }) => {
           })}
         </ContainerCustom>
       </CaloriesContainer>
-      <ArrowContainer margin="17px 0" display="flex" justify="center" align="center">
+      <ArrowContainer margin="0" display="flex" justify="center" align="center">
         <Span
           size="14px"
           weight="700"

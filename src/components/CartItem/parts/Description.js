@@ -6,8 +6,10 @@ import { Link } from "react-router-dom";
 import { ActionCreator } from "actions";
 import { connect } from "react-redux";
 
+const  MOCK_CATEGORY_NAME = "Milk & Cheese";
+
 const DescriptionComponent = (props) => {
-  const { description, id, chooseProduct, addToCart, deleteProduct } = props;
+  const { description, id, chooseProduct } = props;
   const { name, price, discount, special, inCartAmmount } = description;
   console.log("inCmount", inCartAmmount)
 
@@ -15,13 +17,6 @@ const DescriptionComponent = (props) => {
     chooseProduct(id);
   };
 
-  const onAddClick = () => {
-    addToCart(id);
-  };
-
-  const onDeleteClick = () => {
-    deleteProduct(id);
-  };
 
   return (
     <ContainerCustom grow="1" bottom="18px" margin="0">
@@ -99,10 +94,9 @@ const DescriptionComponent = (props) => {
           lineHeight="20px"
         >{`1 pc / £${price} `}</Text>
         <AddToCart
-          addHandler={onAddClick}
-          deleteHandler={onDeleteClick}
           inCartAmount={inCartAmmount}
           size="small"
+          id={id}
         />
       </ContainerCustom>
     </ContainerCustom>
@@ -122,9 +116,7 @@ DescriptionComponent.propTypes = {
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    addToCart: (id) => dispatch(ActionCreator.addItemToCart(id)),
     chooseProduct: (id) => dispatch(ActionCreator.chooseProduct(id)),
-    deleteProduct: (id) => dispatch(ActionCreator.deleteItemFromCart(id)),
   };
 };
 

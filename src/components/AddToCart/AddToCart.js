@@ -1,14 +1,25 @@
 import React from "react";
 import { ButtonAdd, DeleteButton, Span, ContainerCustom } from "components";
 import PropTypes from "prop-types";
+import { ActionCreator } from "actions";
+import { connect } from "react-redux";
 
-const AddToCart = ({ size, inCartAmount, addHandler, deleteHandler }) => {
+const CartAdding = ({ size, inCartAmount, addToCart, deleteProduct, id }) => {
 console.log("inCartAmount", inCartAmount)
+
+const onAddClick = () => {
+  addToCart(id);
+};
+
+const onDeleteClick = () => {
+  deleteProduct(id);
+};
+
   return (
     <ContainerCustom display="flex" align="center">
       {inCartAmount ? (
         <>
-          <DeleteButton clickHandler={deleteHandler} size={size} />
+          <DeleteButton clickHandler={onDeleteClick} size={size} />
           <Span
             color="#333333"
             margin="0 12px"
@@ -21,18 +32,26 @@ console.log("inCartAmount", inCartAmount)
           </Span>
         </>
       ) : (
-        <Span onClick={addHandler} margin="0 6px 0 0">Add</Span>
+        <Span onClick={onAddClick} margin="0 6px 0 0">Add</Span>
       )}
-      <ButtonAdd clickHandler={addHandler} size={size} />
+      <ButtonAdd clickHandler={onAddClick} size={size} />
     </ContainerCustom>
   );
 };
 
-AddToCart.propTypes = {
+CartAdding.propTypes = {
   size: PropTypes.oneOf(["big", "small"]),
   inCartAmount: PropTypes.number,
-  addHandler: PropTypes.func,
-  deleteHandler: PropTypes.func
+  addToCart: PropTypes.func,
+  deleteProduct: PropTypes.func,
+  id: PropTypes.number
 };
 
-export { AddToCart };
+const mapDispatchToProps = (dispatch) => {
+  return {
+    addToCart: (id) => dispatch(ActionCreator.addItemToCart(id)),
+    deleteProduct: (id) => dispatch(ActionCreator.deleteItemFromCart(id)),
+  };
+};
+
+export const AddToCart = connect(null, mapDispatchToProps)(CartAdding);

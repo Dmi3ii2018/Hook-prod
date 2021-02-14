@@ -6,18 +6,19 @@ import {
   RelatedProducts,
   Composition,
 } from "components";
-import productData from "../../data/choosen-item.json";
+
 import { connect } from "react-redux";
+import { withRouter } from "react-router";
 
 const ProductPage = (props) => {
-  const { choosenProduct } = props;
-  const { relatedProducts, composition } = choosenProduct;
-  
+  const { choosenProduct, relatedItems } = props;
+  const { composition } = choosenProduct;
+  console.log("prod props", props)
   return (
     <ContainerCustom  >
-      <Navigation />
-      <ProductCard productData={productData} />
-      <RelatedProducts relatedProducts={relatedProducts} />
+      <Navigation title={`Milk & Cheese`} />
+      <ProductCard productData={choosenProduct} />
+      <RelatedProducts relatedProducts={relatedItems} />
       <Composition composition={composition} />
     </ContainerCustom>
   );
@@ -26,9 +27,11 @@ const ProductPage = (props) => {
 const mapStateToProps = (state) => {
   const { cartItems, choosenProductId } = state;
   const choosenProduct = cartItems.find((item) => item.id === choosenProductId)
+  const relatedItems = cartItems.filter((item) => item.id !== choosenProductId);
   return {
     choosenProduct,
+    relatedItems,
   };
 };
 
-export default connect(mapStateToProps)(ProductPage);
+export default withRouter(connect(mapStateToProps)(ProductPage));

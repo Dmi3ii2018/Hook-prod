@@ -7,18 +7,28 @@ import {
   Composition,
 } from "components";
 import productData from "../../data/choosen-item.json";
+import { connect } from "react-redux";
 
-const ProductPage = () => {
-    const { relatedProducts, composition } = productData;
-
+const ProductPage = (props) => {
+  const { choosenProduct } = props;
+  const { relatedProducts, composition } = choosenProduct;
+  
   return (
-    <ContainerCustom>
+    <ContainerCustom  >
       <Navigation />
-      <ProductCard />
+      <ProductCard productData={productData} />
       <RelatedProducts relatedProducts={relatedProducts} />
       <Composition composition={composition} />
     </ContainerCustom>
   );
 };
 
-export default ProductPage;
+const mapStateToProps = (state) => {
+  const { cartItems, choosenProductId } = state;
+  const choosenProduct = cartItems.find((item) => item.id === choosenProductId)
+  return {
+    choosenProduct,
+  };
+};
+
+export default connect(mapStateToProps)(ProductPage);

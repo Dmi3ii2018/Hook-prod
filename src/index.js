@@ -7,26 +7,38 @@ import { Theme } from "./theme";
 import { createStore } from "redux";
 import { rootReducer } from "./reducer/reducer";
 import { Provider } from "react-redux";
+import { BrowserRouter } from "react-router-dom";
 
 if (process.env.NODE_ENV !== "production") {
   const { whyDidYouUpdate } = require("why-did-you-update");
   whyDidYouUpdate(React);
 }
-
+let currentValue;
 const store = new createStore(rootReducer);
-console.log("store: ", store.getState());
+store.subscribe(() => {
+  let previousValue = currentValue
+  currentValue = store.getState()
+
+  if (previousValue !== currentValue) {
+    console.log(
+      'Some deep nested property changed from',
+      previousValue,
+      'to',
+      currentValue
+    )
+  }
+})
 ReactDOM.render(
   <React.StrictMode>
     <Provider store={store}>
-      <Theme>
-        <App />
-      </Theme>
+      <BrowserRouter>
+        <Theme>
+          <App />
+        </Theme>
+      </BrowserRouter>
     </Provider>
   </React.StrictMode>,
   document.getElementById("root")
 );
 
-// If you want to start measuring performance in your app, pass a function
-// to log results (for example: reportWebVitals(console.log))
-// or send to an analytics endpoint. Learn more: https://bit.ly/CRA-vitals
 reportWebVitals();

@@ -35,13 +35,14 @@ const totalPrice = useMemo(() => {
 
 const mapStateToProps = (state) => {
   return {
-    cartItems: state.cartItems,
+    cartItems: [...state.cartItems],
   };
 };
 
 const mapDispatchToProps = (dispatch) => {
   return {
     addToCart: (id) => dispatch(ActionCreator.addItemToCart(id)),
+    chooseProduct: (id) => dispatch(ActionCreator.chooseProduct(id)),
   };
 };
 

@@ -2,9 +2,27 @@ import React from "react";
 import { ContainerCustom, Text, Span, AddToCart } from "components";
 import PropTypes from "prop-types";
 import { ReactComponent as DetailsIcon } from "assets/icons/details-arrow.svg";
+import { Link } from "react-router-dom";
+import { ActionCreator } from "actions";
+import { connect } from "react-redux";
 
-const Description = ({ description, isLast }) => {
+const DescriptionComponent = (props) => {
+  const { description, id, chooseProduct, addToCart, deleteProduct } = props;
   const { name, price, discount, special, inCartAmmount } = description;
+  console.log("inCmount", inCartAmmount)
+
+  const onCardClick = () => {
+    chooseProduct(id);
+  };
+
+  const onAddClick = () => {
+    addToCart(id);
+  };
+
+  const onDeleteClick = () => {
+    deleteProduct(id);
+  };
+
   return (
     <ContainerCustom grow="1" bottom="18px" margin="0">
       <ContainerCustom display="flex" align="flex-start">
@@ -17,30 +35,34 @@ const Description = ({ description, isLast }) => {
         >
           {name}
         </Text>
-        {isLast ? (
-          <Span display="flex" align="center" color="#333333" size="10px">
-            <Span color="#333333" size="12px" margin="0 4px 0 0">
-              Details
-            </Span>{" "}
-            <DetailsIcon />
-          </Span>
+        {inCartAmmount ? (
+          <Link onClick={onCardClick} to={`/product/${id}`}>
+            <Span display="flex" align="center" color="#333333" size="10px">
+              <Span color="#333333" size="12px" margin="0 4px 0 0">
+                Details
+              </Span>{" "}
+              <DetailsIcon />
+            </Span>
+          </Link>
         ) : null}
       </ContainerCustom>
-      <Span
-        width="fit-content"
-        height="20px"
-        padding="0 5px"
-        margin="5px 0 0 0"
-        display="flex"
-        justify="center"
-        align="center"
-        bg="#FFEBBF"
-        color="#333333"
-        borderRadius="3px"
-        size="8px"
-        lineHeight="11px"
-        dangerouslySetInnerHTML={{ __html: special }}
-      />
+      {special && (
+        <Span
+          width="fit-content"
+          height="20px"
+          padding="0 5px"
+          margin="5px 0 0 0"
+          display="flex"
+          justify="center"
+          align="center"
+          bg="#FFEBBF"
+          color="#333333"
+          borderRadius="3px"
+          size="8px"
+          lineHeight="11px"
+          dangerouslySetInnerHTML={{ __html: special }}
+        />
+      )}
       <ContainerCustom
         margin="5px 0 0 0"
         display="flex"
@@ -76,13 +98,18 @@ const Description = ({ description, isLast }) => {
           size="12px"
           lineHeight="20px"
         >{`1 pc / £${price} `}</Text>
-        <AddToCart inCartAmount={inCartAmmount} size="small" />
+        <AddToCart
+          addHandler={onAddClick}
+          deleteHandler={onDeleteClick}
+          inCartAmount={inCartAmmount}
+          size="small"
+        />
       </ContainerCustom>
     </ContainerCustom>
   );
 };
 
-Description.propTypes = {
+DescriptionComponent.propTypes = {
   description: PropTypes.shape({
     name: PropTypes.string,
     price: PropTypes.number,
@@ -90,7 +117,15 @@ Description.propTypes = {
     isPriceChanged: PropTypes.bool,
     special: PropTypes.string,
   }),
-  isLast: PropTypes.bool,
+  id: PropTypes.number,
 };
 
-export default Description;
+const mapDispatchToProps = (dispatch) => {
+  return {
+    addToCart: (id) => dispatch(ActionCreator.addItemToCart(id)),
+    chooseProduct: (id) => dispatch(ActionCreator.chooseProduct(id)),
+    deleteProduct: (id) => dispatch(ActionCreator.deleteItemFromCart(id)),
+  };
+};
+
+export default connect(null, mapDispatchToProps)(DescriptionComponent);

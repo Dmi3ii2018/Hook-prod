@@ -1,25 +1,26 @@
-import { cartItems } from "data/cart-items";
+import { cartList } from "data/cart-items";
+import { ActionType } from "actions";
+import {set, update } from 'lodash/fp';
 
 const initialState = {
-  cartItems,
+  choosenProductId: -1,
+  cartItems: cartList
 };
 
 export const rootReducer = (state = initialState, action) => {
   switch (action.type) {
-    case `GET_CART_ITEMS`:
+    case ActionType.CHOOSE_PRODUCT:
+      return { ...state, choosenProductId: action.payload };
+
+    case ActionType.GET_CART_ITEMS:
       return state.cartItems;
 
-    case `ADD_ITEM_TO_CART`:
-        state.cartItems[action.payload].inCartAmmount = state.cartItems[action.payload].inCartAmmount + 1;
-      return Object.assign({}, state, {
-        cartItems: [...state.cartItems],
-      });
+    case ActionType.ADD_ITEM_TO_CART:
+      return update(`cartItems[${action.payload}].description.inCartAmmount`, i => i + 1, state)
 
-    case `DELETE_ITEM_FROM_CART`:
-      return Object.assign({}, state, {
-        cartItems: [],
-      });
+    case ActionType.DELETE_ITEM_FROM_CART:
+      return set(`cartItems[${action.payload}].description.inCartAmmount`, 0 , state)
     default:
       return state;
   }
-};
+}; 

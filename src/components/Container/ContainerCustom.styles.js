@@ -25,6 +25,7 @@ export const ContainerCustom = styled.div`
   bottom: ${({ bottom }) => bottom};
   overflow: ${({ overflow }) => overflow};
   z-index: ${({ zIndex }) => zIndex};
+  text-align: ${({ textAlign }) => textAlign};
   border-radius: ${({ borderRadius }) => borderRadius};
   box-sizing: border-box;
   ${({ borderColor, borderRadius }) =>

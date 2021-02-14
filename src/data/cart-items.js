@@ -1,4 +1,4 @@
-export const cartItems = [
+export const cartList = [
   {
     id: 0,
     features: [

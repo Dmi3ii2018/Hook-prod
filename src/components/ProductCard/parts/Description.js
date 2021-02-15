@@ -3,7 +3,6 @@ import { ContainerCustom, Text, Span, AddToCart } from "components";
 import PropTypes from "prop-types";
 
 const Description = ({ description, id }) => {
-  console.log("description", description)
   const { name, price, inCartAmmount } = description;
 
   return (
@@ -20,8 +19,8 @@ const Description = ({ description, id }) => {
 
 Description.propTypes = {
   description: PropTypes.shape({
-    name: PropTypes.string,
-    price: PropTypes.number,
+    name: PropTypes.string.isRequired,
+    price: PropTypes.number.isRequired,
   }),
 };
 

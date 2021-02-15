@@ -8,7 +8,7 @@ const Composition = ({ composition }) => {
   const { nutrition, ingredients, other } = composition;
   return (
     <ContainerCustom
-      borderRadius="8px 8px 0 0"
+      borderRadius="8px 8px 8px 8px"
       bg="#ffffff"
       margin="24px"
       padding="15px"

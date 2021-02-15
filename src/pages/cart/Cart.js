@@ -1,6 +1,4 @@
 import React, { useMemo } from "react";
-import { connect } from "react-redux";
-import { ActionCreator } from "actions";
 import {
   Navigation,
   ContainerCustom,
@@ -10,17 +8,16 @@ import {
   Checkout,
 } from "components";
 import CartItems from "./parts/CartItems";
+import { useTemplateStore } from "hooks";
 
 const Cart = (props) => {
-  console.log("props: ", props);
-  const { cartItems } = props;
+  const { cartItems } = useTemplateStore();
 
   const totalPrice = useMemo(() => {
     const total = cartItems.reduce(
-      (sum, current) => sum + current.description.price,
+      (sum, current) => sum + (current.description.price * current.description.inCartAmmount),
       0
     );
-    console.log(total);
     return total.toFixed(2);
   }, [cartItems]);
 
@@ -31,23 +28,9 @@ const Cart = (props) => {
       <CartItems cartItems={cartItems} />
       <Payments />
       <Total order={totalPrice} />
-      <Checkout />
+      <Checkout totalPrice={+totalPrice} />
     </ContainerCustom>
   );
 };
 
-const mapStateToProps = (state) => {
-  const cartItems = state.cartItems.filter((item) => item.description.inCartAmmount > 0);
-  return {
-    cartItems,
-  };
-};
-
-const mapDispatchToProps = (dispatch) => {
-  return {
-    addToCart: (id) => dispatch(ActionCreator.addItemToCart(id)),
-    chooseProduct: (id) => dispatch(ActionCreator.chooseProduct(id)),
-  };
-};
-
-export default connect(mapStateToProps, mapDispatchToProps)(Cart);
+export default Cart;

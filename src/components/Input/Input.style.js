@@ -6,10 +6,9 @@ export const Input = styled.input`
   padding: ${({ padding }) => padding || "16px 0 0 13px"};
   margin: ${({ margin }) => margin};
   box-sizing: border-box;
-  color: ${({ color }) =>
-    color || "#333333"};
+  color: ${({ color }) => color || "#333333"};
   background: ${({ bgInput }) => bgInput};
-  border: 1px solid #EBEBEB;
+  border: 1px solid #ebebeb;
   outline: none;
   box-shadow: ${({ boxshadow }) => boxshadow};
   border-radius: 8px;
@@ -21,22 +20,36 @@ export const Input = styled.input`
 
   &:focus {
     border: 1px solid ${({ theme }) => theme.colors.borders.light} !important;
-  & + label {
+    & + label {
       font-size: 12px;
       top: 3px;
-  }
-}
+    }
 
-  ${({ theme, overflow }) =>
-    overflow &&
+    & + label[for="Country"] {
+      top: 25px;
+    }
+  }
+
+  ${({ value }) =>
+    value &&
     css`
-      overflow: hidden;
-      text-overflow: ellipsis;
+      & + label {
+        font-size: 12px;
+        top: 3px;
+      }
+
+      & + label[for="Country"] {
+        top: 25px;
+      }
     `}
 `;
 
 export const Form = styled.form`
   width: 100%;
+
+  input[name="country"] {
+    padding: 0 0 16px 13px;
+  }
 `;
 
 export const Label = styled.label`

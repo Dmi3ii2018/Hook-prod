@@ -28,7 +28,7 @@ const Ingridients = ({ ingredients }) => {
 };
 
 Ingridients.propTypes = {
-  ingredients: PropTypes.string,
+  ingredients: PropTypes.string.isRequired,
 };
 
 export default Ingridients;

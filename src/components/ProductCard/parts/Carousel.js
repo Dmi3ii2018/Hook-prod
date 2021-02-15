@@ -1,6 +1,5 @@
 import React, { useMemo } from "react";
 import Slider from "react-slick";
-import ProductImage from "assets/img/main-item.png";
 import { ContainerCustom } from "components";
 import styled from "styled-components";
 import SliderDot from "assets/icons/slider-dot.svg";

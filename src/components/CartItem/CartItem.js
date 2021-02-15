@@ -14,7 +14,6 @@ const CartItem = (props) => {
       display="flex"
       padding="12px 8px"
       minHeight="90px"
-      border="1px solid"
     >
       <Img
         width="43"
@@ -28,7 +27,7 @@ const CartItem = (props) => {
 };
 
 CartItem.propTypes = {
-  cartItem: PropTypes.object,
+  cartItem: PropTypes.object.isRequired,
 };
 
 

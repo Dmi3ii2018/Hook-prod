@@ -43,8 +43,8 @@ const Description = ({ description, id }) => {
 
 Description.propTypes = {
   description: PropTypes.shape({
-    name: PropTypes.string,
-    price: PropTypes.number,
+    name: PropTypes.string.isRequired,
+    price: PropTypes.number.isRequired,
     inCartAmmount: PropTypes.number,
   }),
   id: PropTypes.number

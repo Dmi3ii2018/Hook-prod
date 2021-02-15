@@ -2,11 +2,10 @@ import React, { useMemo } from "react";
 import { ContainerCustom, Img } from "components";
 import PropTypes from "prop-types";
 import Description from "./parts/Description"
-import { ActionCreator } from "actions";
-import { connect } from "react-redux";
+import { useTemplateStore } from "hooks";
 
-const RelatedItemItem = ({ item, handleFavorite }) => {
-  console.log(item)
+const RelatedItemCard = ({ item }) => {
+  const { handleFavorite } = useTemplateStore();
   const { description, image, isFavorite, id } = useMemo(() => item, [item]);
 
   const favoriteClickHandler = (id) => {
@@ -44,7 +43,7 @@ const RelatedItemItem = ({ item, handleFavorite }) => {
   );
 };
 
-RelatedItemItem.propTypes = {
+RelatedItemCard.propTypes = {
   item: PropTypes.shape({
     name: PropTypes.string,
     img: PropTypes.string,
@@ -54,11 +53,4 @@ RelatedItemItem.propTypes = {
   }),
 };
 
-const mapDispatchToProps = (dispatch) => {
-  return {
-    handleFavorite: (id) => dispatch(ActionCreator.handleFavorite(id)),
-  };
-};
-
-export const RelatedItemCard = connect(null, mapDispatchToProps)(RelatedItemItem);
-
+export { RelatedItemCard };

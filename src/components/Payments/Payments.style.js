@@ -7,6 +7,7 @@ export const Input = styled.input`
   padding: 13px 17px;
   box-sizing: border-box;
   margin: 0 auto;
+  border: none;
 `;
 
 export const Label = styled.label``;

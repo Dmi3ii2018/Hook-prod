@@ -1,12 +1,12 @@
 import React from "react";
 import { ContainerCustom, Title, Span } from "components";
-import { Input, Label } from "./Payments.style";
+import { Input } from "./Payments.style";
 import { ReactComponent as OkIcon } from "assets/icons/ok-sign.svg";
 
 const Payments = () => {
   return (
     <ContainerCustom>
-      <Title>Payment</Title>
+      <Title margin="10px 0" padding="0 0 0 24px">Payment</Title>
       <ContainerCustom display="flex" position="relative">
         <Input placeholder="GHYU907H" />
         <Span

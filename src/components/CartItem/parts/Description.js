@@ -3,15 +3,12 @@ import { ContainerCustom, Text, Span, AddToCart } from "components";
 import PropTypes from "prop-types";
 import { ReactComponent as DetailsIcon } from "assets/icons/details-arrow.svg";
 import { Link } from "react-router-dom";
-import { ActionCreator } from "actions";
-import { connect } from "react-redux";
+import { useTemplateStore } from "hooks";
 
-const  MOCK_CATEGORY_NAME = "Milk & Cheese";
-
-const DescriptionComponent = (props) => {
-  const { description, id, chooseProduct } = props;
+const Description = (props) => {
+  const { chooseProduct } = useTemplateStore();
+  const { description, id } = props;
   const { name, price, discount, special, inCartAmmount } = description;
-  console.log("inCmount", inCartAmmount)
 
   const onCardClick = () => {
     chooseProduct(id);
@@ -103,21 +100,16 @@ const DescriptionComponent = (props) => {
   );
 };
 
-DescriptionComponent.propTypes = {
+Description.propTypes = {
   description: PropTypes.shape({
-    name: PropTypes.string,
-    price: PropTypes.number,
+    name: PropTypes.string.isRequired,
+    price: PropTypes.number.isRequired,
     discount: PropTypes.number,
     isPriceChanged: PropTypes.bool,
     special: PropTypes.string,
   }),
-  id: PropTypes.number,
+  id: PropTypes.number.isRequired,
 };
 
-const mapDispatchToProps = (dispatch) => {
-  return {
-    chooseProduct: (id) => dispatch(ActionCreator.chooseProduct(id)),
-  };
-};
 
-export default connect(null, mapDispatchToProps)(DescriptionComponent);
+export default Description;

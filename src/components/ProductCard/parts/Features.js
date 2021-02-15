@@ -1,12 +1,12 @@
 import React, { useMemo } from "react";
 import { ContainerCustom, Span, Img } from "components";
 import PropTypes from "prop-types";
-import { ActionCreator } from "actions";
-import { connect } from "react-redux";
+import { useTemplateStore } from "hooks";
 
 const MAX_FEATURES_ICON_NUMBER = 3;
 
-const Features = ({ features, isFavorite, handleFavorite, id }) => {
+const Features = ({ features, isFavorite, id }) => {
+  const { handleFavorite } = useTemplateStore();
   const featuresList = useMemo(() => {
     return features.length <= MAX_FEATURES_ICON_NUMBER
       ? features
@@ -70,14 +70,8 @@ const Features = ({ features, isFavorite, handleFavorite, id }) => {
 };
 
 Features.propTypes = {
-  features: PropTypes.arrayOf(PropTypes.string),
-  isFavorite: PropTypes.bool,
+  features: PropTypes.arrayOf(PropTypes.object).isRequired,
+  isFavorite: PropTypes.bool.isRequired,
 };
 
-const mapDispatchToProps = (dispatch) => {
-  return {
-    handleFavorite: (id) => dispatch(ActionCreator.handleFavorite(id)),
-  };
-};
-
-export default connect(null, mapDispatchToProps)(Features);
+export default Features;

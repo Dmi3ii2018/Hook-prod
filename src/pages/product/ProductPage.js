@@ -6,14 +6,12 @@ import {
   RelatedProducts,
   Composition,
 } from "components";
+import { useTemplateStore } from "hooks";
 
-import { connect } from "react-redux";
-import { withRouter } from "react-router";
-
-const ProductPage = (props) => {
-  const { choosenProduct, relatedItems } = props;
+const ProductPage = () => {
+  const { choosenProduct, relatedItems } = useTemplateStore();
   const { composition } = choosenProduct;
-  console.log("prod props", props)
+
   return (
     <ContainerCustom  >
       <Navigation title={`Milk & Cheese`} />
@@ -24,14 +22,4 @@ const ProductPage = (props) => {
   );
 };
 
-const mapStateToProps = (state) => {
-  const { cartItems, choosenProductId } = state;
-  const choosenProduct = cartItems.find((item) => item.id === choosenProductId)
-  const relatedItems = cartItems.filter((item) => item.id !== choosenProductId);
-  return {
-    choosenProduct,
-    relatedItems,
-  };
-};
-
-export default withRouter(connect(mapStateToProps)(ProductPage));
+export default ProductPage;

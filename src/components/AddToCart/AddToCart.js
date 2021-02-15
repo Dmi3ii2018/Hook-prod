@@ -1,22 +1,45 @@
-import React from "react";
-import { ButtonAdd, DeleteButton, Span, ContainerCustom } from "components";
+import React, { useState } from "react";
+import {
+  ButtonAdd,
+  DeleteButton,
+  Span,
+  ContainerCustom,
+  Notification,
+} from "components";
 import PropTypes from "prop-types";
-import { ActionCreator } from "actions";
-import { connect } from "react-redux";
+import { useTemplateStore } from "hooks";
 
-const CartAdding = ({ size, inCartAmount, addToCart, deleteProduct, id }) => {
-console.log("inCartAmount", inCartAmount)
+const AddToCart = ({ size, inCartAmount, id }) => {
+  const { addToCart, deleteProduct } = useTemplateStore();
+  const [showNotifyClass, setNotifyClass] = useState(null);
+  const [isNotifyOpen, setNotify] = useState(null);
 
-const onAddClick = () => {
-  addToCart(id);
-};
+  const notificationHandler = () => {
+    setNotifyClass("warning");
+    setNotify("open");
+    setTimeout(() => {
+      setNotify("close");
+    }, 1000);
+  };
 
-const onDeleteClick = () => {
-  deleteProduct(id);
-};
+  const onAddClick = () => {
+    addToCart(id);
+    // notificationHandler();
+  };
+
+  const onDeleteClick = () => {
+    // notificationHandler();
+    deleteProduct(id);
+  };
 
   return (
     <ContainerCustom display="flex" align="center">
+      {/* {
+        <Notification
+          type={`${showNotifyClass} ${isNotifyOpen}`}
+          text="Your Cart has changed"
+        />
+      } */}
       {inCartAmount ? (
         <>
           <DeleteButton clickHandler={onDeleteClick} size={size} />
@@ -32,26 +55,19 @@ const onDeleteClick = () => {
           </Span>
         </>
       ) : (
-        <Span onClick={onAddClick} margin="0 6px 0 0">Add</Span>
+        <Span onClick={onAddClick} margin="0 6px 0 0">
+          Add
+        </Span>
       )}
       <ButtonAdd clickHandler={onAddClick} size={size} />
     </ContainerCustom>
   );
 };
 
-CartAdding.propTypes = {
+AddToCart.propTypes = {
   size: PropTypes.oneOf(["big", "small"]),
-  inCartAmount: PropTypes.number,
-  addToCart: PropTypes.func,
-  deleteProduct: PropTypes.func,
-  id: PropTypes.number
+  inCartAmount: PropTypes.number.isRequired,
+  id: PropTypes.number.isRequired,
 };
 
-const mapDispatchToProps = (dispatch) => {
-  return {
-    addToCart: (id) => dispatch(ActionCreator.addItemToCart(id)),
-    deleteProduct: (id) => dispatch(ActionCreator.deleteItemFromCart(id)),
-  };
-};
-
-export const AddToCart = connect(null, mapDispatchToProps)(CartAdding);
+export { AddToCart }

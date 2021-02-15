@@ -56,7 +56,7 @@ const Nutrition = ({ nutrition }) => {
 
 Nutrition.propTypes = {
   nutrition: PropTypes.shape({
-    description: PropTypes.string,
+    description: PropTypes.string.isRequired,
     points: PropTypes.arrayOf(PropTypes.string),
     calories: PropTypes.arrayOf(PropTypes.object),
   }),

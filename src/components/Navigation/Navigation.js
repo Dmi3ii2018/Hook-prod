@@ -47,7 +47,7 @@ const NavigationComponent = ({ title, history, location }) => {
   return (
     <NavigationContainer position="relative">
       <ContainerCustom
-        width="100%"
+        width="360px"
         height="50px"
         bg="#FFB000"
         textAlign="center"
@@ -65,13 +65,13 @@ const NavigationComponent = ({ title, history, location }) => {
       </ContainerCustom>
       <ContainerCustom margin="50px 0 0 0" />
       <ContainerCustom
-        width="100%"
+        width="360px"
         height="50px"
         bg="#FFB000"
         borderRadius="0 0 8px 8px"
         top="45px"
         position="fixed"
-        zIndex="-1"
+        zIndex="0"
         className={isFirstrender ? "" : isNavBarHidden ? "close" : "open"}
       />
     </NavigationContainer>
@@ -79,7 +79,7 @@ const NavigationComponent = ({ title, history, location }) => {
 };
 
 NavigationComponent.propTypes = {
-  title: PropTypes.string,
+  title: PropTypes.string.isRequired,
 };
 
 export const Navigation = withRouter(NavigationComponent);

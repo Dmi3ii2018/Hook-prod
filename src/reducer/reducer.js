@@ -3,7 +3,7 @@ import { ActionType } from "actions";
 import { set, update } from "lodash/fp";
 
 const initialState = {
-  choosenProductId: -1,
+  choosenProductId: 0,
   cartItems: cartList,
 };
 

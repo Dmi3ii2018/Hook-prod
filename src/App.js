@@ -10,6 +10,7 @@ function App() {
       <Switch>
         <Route path="/" exact component={Cart} />
         <Route path="/product/:id/" exact render={() => <ProductPage />} />
+        <Route component={Cart} />
       </Switch>
     </ContainerCustom>
   );
